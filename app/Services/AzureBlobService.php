@@ -38,4 +38,23 @@ class AzureBlobService
 
         return true;
     }
+
+    /**
+     * 建立 Blob
+     * @param string $containerName
+     * @param string $blobName
+     * @param $content
+     * @return bool
+     */
+    public function createBlob(string $containerName, string $blobName, $content) : bool
+    {
+        try {
+            $this->blobProxy->createBlockBlob($containerName, $blobName, $content);
+        } catch (ServiceException $exception) {
+            echo $exception->getCode() . ':' . $exception->getMessage();
+            return false;
+        }
+
+        return true;
+    }
 }
