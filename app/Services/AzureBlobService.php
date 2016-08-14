@@ -5,6 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Collection;
 use MicrosoftAzure\Storage\Blob\Internal\IBlob;
 use MicrosoftAzure\Storage\Blob\Models\Blob;
+use MicrosoftAzure\Storage\Blob\Models\GetBlobResult;
 use MicrosoftAzure\Storage\Blob\Models\ListBlobsResult;
 use MicrosoftAzure\Storage\Common\ServiceException;
 use WindowsAzure\Common\ServicesBuilder;
@@ -83,4 +84,25 @@ class AzureBlobService
             return collect([]);
         }
     }
+
+    /**
+     * 下載 Blob
+     * @param string $containerName
+     * @param string $blobName
+     * @return bool
+     */
+    public function downloadBlob(string $containerName, string $blobName) : bool
+    {
+        try {
+            /** @var GetBlobResult $blob */
+            $blob = $this->blobProxy->getBlob($containerName, $blobName);
+            fpassthru($blob->getContentStream());
+        } catch (ServiceException $exception) {
+            echo $exception->getCode() . ':' . $exception->getMessage();
+            return false;
+        }
+
+        return true;
+    }
+
 }
