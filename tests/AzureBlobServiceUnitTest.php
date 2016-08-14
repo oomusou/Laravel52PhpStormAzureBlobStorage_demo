@@ -42,4 +42,20 @@ class AzureBlobServiceUnitTest extends TestCase
         $expected = true;
         $this->assertEquals($expected, $actual);
     }
+
+    /** @test */
+    public function 顯示所有Blob()
+    {
+        /** arrange */
+
+        /** act */
+        $containerName = 'mycontainer';
+        $actual = $this->target->listAllBlobs($containerName)->all();
+
+        /** assert */
+        $expected = [
+            ['name' => 'myblob', 'url'  => 'https://laravel52blobstorage.blob.core.windows.net/mycontainer/myblob']
+        ];
+        $this->assertEquals($expected, $actual);
+    }
 }
