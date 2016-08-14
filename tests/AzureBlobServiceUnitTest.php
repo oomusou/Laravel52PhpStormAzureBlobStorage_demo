@@ -58,4 +58,19 @@ class AzureBlobServiceUnitTest extends TestCase
         ];
         $this->assertEquals($expected, $actual);
     }
+
+    /** @test */
+    public function 下載Blob()
+    {
+        /** arrange */
+
+        /** act */
+        $containerName = 'mycontainer';
+        $blobName = 'myblob';
+        $actual = $this->target->downloadBlob($containerName, $blobName);
+
+        /** assert */
+        $expected = true;
+        $this->assertEquals($expected, $actual);
+    }
 }
