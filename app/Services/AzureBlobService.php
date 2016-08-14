@@ -123,4 +123,20 @@ class AzureBlobService
         return true;
     }
 
+    /**
+     * 刪除 Container
+     * @param string $containerName
+     * @return bool
+     */
+    public function deleteContainer(string $containerName) : bool
+    {
+        try {
+            $this->blobProxy->deleteContainer($containerName);
+        } catch (ServiceException $exception) {
+            echo $exception->getCode() . ':' . $exception->getMessage();
+            return false;
+        }
+
+        return true;
+    }
 }
