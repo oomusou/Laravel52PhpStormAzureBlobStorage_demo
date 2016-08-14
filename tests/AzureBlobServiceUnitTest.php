@@ -26,4 +26,20 @@ class AzureBlobServiceUnitTest extends TestCase
         $expected = true;
         $this->assertEquals($expected, $actual);
     }
+
+    /** @test */
+    public function 建立Blob()
+    {
+        /** arrange */
+
+        /** act */
+        $containerName = 'mycontainer';
+        $blobName = 'myblob';
+        $content = fopen(__DIR__ . '/blob.txt', 'r');
+        $actual = $this->target->createBlob($containerName, $blobName, $content);
+
+        /** assert */
+        $expected = true;
+        $this->assertEquals($expected, $actual);
+    }
 }
