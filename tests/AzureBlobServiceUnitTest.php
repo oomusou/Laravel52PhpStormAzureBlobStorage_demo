@@ -73,4 +73,19 @@ class AzureBlobServiceUnitTest extends TestCase
         $expected = true;
         $this->assertEquals($expected, $actual);
     }
+
+    /** @test */
+    public function 刪除Blob()
+    {
+        /** arrange */
+
+        /** act */
+        $containerName = 'mycontainer';
+        $blobName = 'myblob';
+        $actual = $this->target->deleteBlob($containerName, $blobName);
+
+        /** assert */
+        $expected = true;
+        $this->assertEquals($expected, $actual);
+    }
 }
