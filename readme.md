@@ -1,3 +1,3 @@
-## My Blog Demo
+## Azure + Laravel + Blob Storage Demo
 
-Demo for http://oomusou.io/
+Demo for http://oomusou.io/azure/azure-blob-storage/
